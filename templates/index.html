@@ -5,24 +5,9 @@
 {% endblock %}
 {% block content %}
 
-<div class=" pt-6 h-100">
-    <div class="d-flex justify-content-center align-items-center h-100">
-        <form  method="POST" method="post" action="." enctype="multipart/form-data" class="card card-flush shadow-sm w-75 p-5">
-            <div class="m-6">
-                <label class="fs-3 form-label d-flex justify-content-center align-items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-cpu-fill" viewBox="0 0 16 16">
-                        <path d="M6.5 6a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3z"/>
-                        <path d="M5.5.5a.5.5 0 0 0-1 0V2A2.5 2.5 0 0 0 2 4.5H.5a.5.5 0 0 0 0 1H2v1H.5a.5.5 0 0 0 0 1H2v1H.5a.5.5 0 0 0 0 1H2v1H.5a.5.5 0 0 0 0 1H2A2.5 2.5 0 0 0 4.5 14v1.5a.5.5 0 0 0 1 0V14h1v1.5a.5.5 0 0 0 1 0V14h1v1.5a.5.5 0 0 0 1 0V14h1v1.5a.5.5 0 0 0 1 0V14a2.5 2.5 0 0 0 2.5-2.5h1.5a.5.5 0 0 0 0-1H14v-1h1.5a.5.5 0 0 0 0-1H14v-1h1.5a.5.5 0 0 0 0-1H14v-1h1.5a.5.5 0 0 0 0-1H14A2.5 2.5 0 0 0 11.5 2V.5a.5.5 0 0 0-1 0V2h-1V.5a.5.5 0 0 0-1 0V2h-1V.5a.5.5 0 0 0-1 0V2h-1V.5zm1 4.5h3A1.5 1.5 0 0 1 11 6.5v3A1.5 1.5 0 0 1 9.5 11h-3A1.5 1.5 0 0 1 5 9.5v-3A1.5 1.5 0 0 1 6.5 5z"/>
-                    </svg>
-                    <span style="font-size: 2rem;margin-left: .5rem;">Software (Voice 2 Text)</span>
-                </label>
-            </div>
-
-            <!-- bof -->
-            <div class="fv-row mb-10 mx-10">
-                {% if flag %}
-                    <script type="text/javascript"> 
-                        const text = '{{output}}';
+{% if flag %}
+                    <script type="text/javascript">
+                        const text = `{{output}}`.replaceAll('&#34;','"').replaceAll("&gt;",">").replaceAll("&lt;","<").replaceAll("&amp;","&").replaceAll("&#39;","'");
                         const filename = '{{filename}}';
                         var element = document.createElement('a');
                         element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
@@ -35,7 +20,24 @@
             
                         document.body.removeChild(element);
                     </script>
-                {% endif %}
+{% endif %}
+
+<div class=" pt-6 h-100">
+    <div class="d-flex justify-content-center align-items-center h-100">
+        <form method="POST" method="post" action="." enctype="multipart/form-data" class="card card-flush shadow-sm w-75 p-5">
+            <div class="m-6">
+                <label class="fs-3 form-label d-flex justify-content-center align-items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-cpu-fill" viewBox="0 0 16 16">
+                        <path d="M6.5 6a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3z"/>
+                        <path d="M5.5.5a.5.5 0 0 0-1 0V2A2.5 2.5 0 0 0 2 4.5H.5a.5.5 0 0 0 0 1H2v1H.5a.5.5 0 0 0 0 1H2v1H.5a.5.5 0 0 0 0 1H2v1H.5a.5.5 0 0 0 0 1H2A2.5 2.5 0 0 0 4.5 14v1.5a.5.5 0 0 0 1 0V14h1v1.5a.5.5 0 0 0 1 0V14h1v1.5a.5.5 0 0 0 1 0V14h1v1.5a.5.5 0 0 0 1 0V14a2.5 2.5 0 0 0 2.5-2.5h1.5a.5.5 0 0 0 0-1H14v-1h1.5a.5.5 0 0 0 0-1H14v-1h1.5a.5.5 0 0 0 0-1H14v-1h1.5a.5.5 0 0 0 0-1H14A2.5 2.5 0 0 0 11.5 2V.5a.5.5 0 0 0-1 0V2h-1V.5a.5.5 0 0 0-1 0V2h-1V.5a.5.5 0 0 0-1 0V2h-1V.5zm1 4.5h3A1.5 1.5 0 0 1 11 6.5v3A1.5 1.5 0 0 1 9.5 11h-3A1.5 1.5 0 0 1 5 9.5v-3A1.5 1.5 0 0 1 6.5 5z"/>
+                    </svg>
+                    <span style="font-size: 2rem;margin-left: .5rem;">Software (Voice 2 Text)</span>
+                </label>
+            </div>
+            
+            <!-- bof -->
+            <div class="fv-row mb-10 mx-10">
+                
 
                 <!--begin::Input group-->
                 <div>
@@ -50,7 +52,7 @@
                             <!--begin::Info-->
                             <div class="ms-4">
                                 <h3 class="fs-5 fw-bolder text-gray-900 mb-1">Click here to upload</h3>
-                                <span id="custom-text" class="fs-7 fw-bold text-gray-400">.mp3/.wav</span>
+                                <span id="custom-text" class="fs-5 fw-bold text-gray-700">.mp3/.wav</span>
                             </div>
                             <!--end::Info-->
                         </div>
@@ -61,7 +63,9 @@
                 <!--end::Input group-->
                 
                 <div class="mt-4">
-                    <input type="text" name="language" class="form-control form-control-solid" placeholder="en"/>
+                    <select name="language" id="lan" class="form-select form-select-solid" aria-label="Select example">
+                        
+                    </select>
                 </div>
 
                 <div class="mt-4">
@@ -87,6 +91,376 @@
 {% endblock %}
 {% block script %}
 <script>
+    const loc = [
+    {
+        "af-za":"Afrikaans (South Africa)"
+     },
+     {
+        "am-et":"Amharic (Ethiopia)"
+     },
+     {
+        "ar-ae":"Arabic (United Arab Emirates)"
+     },
+     {
+        "ar-bh":"Arabic (Bahrain)"
+     },
+     {
+        "ar-dz":"Arabic (Algeria)"
+     },
+     {
+        "ar-eg":"Arabic (Egypt)"
+     },
+     {
+        "ar-il":"Arabic (Israel)"
+     },
+     {
+        "ar-iq":"Arabic (Iraq)"
+     },
+     {
+        "ar-jo":"Arabic (Jordan)"
+     },
+     {
+        "ar-kw":"Arabic (Kuwait)"
+     },
+     {
+        "ar-lb":"Arabic (Lebanon)"
+     },
+     {
+        "ar-ma":"Arabic (Morocco)"
+     },
+     {
+        "ar-om":"Arabic (Oman)"
+     },
+     {
+        "ar-ps":"Arabic (State of Palestine)"
+     },
+     {
+        "ar-qa":"Arabic (Qatar)"
+     },
+     {
+        "ar-sa":"Arabic (Saudi Arabia)"
+     },
+     {
+        "ar-tn":"Arabic (Tunisia)"
+     },
+     {
+        "az-az":"Azerbaijani (Azerbaijan)"
+     },
+     {
+        "bg-bg":"Bulgarian (Bulgaria)"
+     },
+     {
+        "bn-bd":"Bengali (Bangladesh)"
+     },
+     {
+        "bn-in":"Bengali (India)"
+     },
+     {
+        "ca-es":"Catalan (Spain)"
+     },
+     {
+        "cmn-hans-cn":"Chinese, Mandarin (Simplified, China)"
+     },
+     {
+        "cmn-hans-hk":"Chinese, Mandarin (Simplified, Hong Kong)"
+     },
+     {
+        "cmn-hant-tw":"Chinese, Mandarin (Traditional, Taiwan)"
+     },
+     {
+        "cs-cz":"Czech (Czech Republic)"
+     },
+     {
+        "da-dk":"Danish (Denmark)"
+     },
+     {
+        "de-de":"German (Germany)"
+     },
+     {
+        "el-gr":"Greek (Greece)"
+     },
+     {
+        "en-au":"English (Australia)"
+     },
+     {
+        "en-ca":"English (Canada)"
+     },
+     {
+        "en-gb":"English (United Kingdom)"
+     },
+     {
+        "en-gh":"English (Ghana)"
+     },
+     {
+        "en-ie":"English (Ireland)"
+     },
+     {
+        "en-in":"English (India)"
+     },
+     {
+        "en-ke":"English (Kenya)"
+     },
+     {
+        "en-ng":"English (Nigeria)"
+     },
+     {
+        "en-nz":"English (New Zealand)"
+     },
+     {
+        "en-ph":"English (Philippines)"
+     },
+     {
+        "en-sg":"English (Singapore)"
+     },
+     {
+        "en-tz":"English (Tanzania)"
+     },
+     {
+        "en-us":"English (United States)"
+     },
+     {
+        "en-za":"English (South Africa)"
+     },
+     {
+        "es-ar":"Spanish (Argentina)"
+     },
+     {
+        "es-bo":"Spanish (Bolivia)"
+     },
+     {
+        "es-cl":"Spanish (Chile)"
+     },
+     {
+        "es-co":"Spanish (Colombia)"
+     },
+     {
+        "es-cr":"Spanish (Costa Rica)"
+     },
+     {
+        "es-do":"Spanish (Dominican Republic)"
+     },
+     {
+        "es-ec":"Spanish (Ecuador)"
+     },
+     {
+        "es-es":"Spanish (Spain)"
+     },
+     {
+        "es-gt":"Spanish (Guatemala)"
+     },
+     {
+        "es-hn":"Spanish (Honduras)"
+     },
+     {
+        "es-mx":"Spanish (Mexico)"
+     },
+     {
+        "es-ni":"Spanish (Nicaragua)"
+     },
+     {
+        "es-pa":"Spanish (Panama)"
+     },
+     {
+        "es-pe":"Spanish (Peru)"
+     },
+     {
+        "es-pr":"Spanish (Puerto Rico)"
+     },
+     {
+        "es-py":"Spanish (Paraguay)"
+     },
+     {
+        "es-sv":"Spanish (El Salvador)"
+     },
+     {
+        "es-us":"Spanish (United States)"
+     },
+     {
+        "es-uy":"Spanish (Uruguay)"
+     },
+     {
+        "es-ve":"Spanish (Venezuela)"
+     },
+     {
+        "eu-es":"Basque (Spain)"
+     },
+     {
+        "fa-ir":"Persian (Iran)"
+     },
+     {
+        "fi-fi":"Finnish (Finland)"
+     },
+     {
+        "fil-ph":"Filipino (Philippines)"
+     },
+     {
+        "fr-ca":"French (Canada)"
+     },
+     {
+        "fr-fr":"French (France)"
+     },
+     {
+        "gl-es":"Galician (Spain)"
+     },
+     {
+        "gu-in":"Gujarati (India)"
+     },
+     {
+        "he-il":"Hebrew (Israel)"
+     },
+     {
+        "hi-in":"Hindi (India)"
+     },
+     {
+        "hr-hr":"Croatian (Croatia)"
+     },
+     {
+        "hu-hu":"Hungarian (Hungary)"
+     },
+     {
+        "hy-am":"Armenian (Armenia)"
+     },
+     {
+        "id-id":"Indonesian (Indonesia)"
+     },
+     {
+        "is-is":"Icelandic (Iceland)"
+     },
+     {
+        "it-it":"Italian (Italy)"
+     },
+     {
+        "ja-jp":"Japanese (Japan)"
+     },
+     {
+        "jv-id":"Javanese (Indonesia)"
+     },
+     {
+        "ka-ge":"Georgian (Georgia)"
+     },
+     {
+        "km-kh":"Khmer (Cambodia)"
+     },
+     {
+        "kn-in":"Kannada (India)"
+     },
+     {
+        "ko-kr":"Korean (South Korea)"
+     },
+     {
+        "lo-la":"Lao (Laos)"
+     },
+     {
+        "lt-lt":"Lithuanian (Lithuania)"
+     },
+     {
+        "lv-lv":"Latvian (Latvia)"
+     },
+     {
+        "ml-in":"Malayalam (India)"
+     },
+     {
+        "mr-in":"Marathi (India)"
+     },
+     {
+        "ms-my":"Malay (Malaysia)"
+     },
+     {
+        "nb-no":"Norwegian Bokmal (Norway)"
+     },
+     {
+        "ne-np":"Nepali (Nepal)"
+     },
+     {
+        "nl-nl":"Dutch (Netherlands)"
+     },
+     {
+        "pl-pl":"Polish (Poland)"
+     },
+     {
+        "pt-br":"Portuguese (Brazil)"
+     },
+     {
+        "pt-pt":"Portuguese (Portugal)"
+     },
+     {
+        "ro-ro":"Romanian (Romania)"
+     },
+     {
+        "ru-ru":"Russian (Russia)"
+     },
+     {
+        "si-lk":"Sinhala (Sri Lanka)"
+     },
+     {
+        "sk-sk":"Slovak (Slovakia)"
+     },
+     {
+        "sl-si":"Slovenian (Slovenia)"
+     },
+     {
+        "sr-rs":"Serbian (Serbia)"
+     },
+     {
+        "su-id":"Sundanese (Indonesia)"
+     },
+     {
+        "sv-se":"Swedish (Sweden)"
+     },
+     {
+        "sw-ke":"Swahili (Kenya)"
+     },
+     {
+        "sw-tz":"Swahili (Tanzania)"
+     },
+     {
+        "ta-in":"Tamil (India)"
+     },
+     {
+        "ta-lk":"Tamil (Sri Lanka)"
+     },
+     {
+        "ta-my":"Tamil (Malaysia)"
+     },
+     {
+        "ta-sg":"Tamil (Singapore)"
+     },
+     {
+        "te-in":"Telugu (India)"
+     },
+     {
+        "th-th":"Thai (Thailand)"
+     },
+     {
+        "tr-tr":"Turkish (Turkey)"
+     },
+     {
+        "uk-ua":"Ukrainian (Ukraine)"
+     },
+     {
+        "ur-in":"Urdu (India)"
+     },
+     {
+        "ur-pk":"Urdu (Pakistan)"
+     },
+     {
+        "vi-vn":"Vietnamese (Vietnam)"
+     },
+     {
+        "yue-hant-hk":"Chinese, Cantonese (Traditional, Hong Kong)"
+     },
+     {
+        "zu-za":"Zulu (South Africa)"
+     }
+  ]
+
+    window.onload = function(){
+        loc.map((e)=>{
+            for (const [key, value] of Object.entries(e)) {
+                document.querySelector("#lan").innerHTML += `<option value="${key}">${value}</option>`;
+            }
+        })
+    }
     const realFileBtn = document.getElementById("choose-btn");
     const customTxt = document.getElementById("custom-text");
 
