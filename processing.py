@@ -1,16 +1,15 @@
-import textract
-import re
+import os,glob
+from os.path import join,isfile
+from subprocess import check_output
 
-
-def get_numbers(file_path):
-    output = ''
-    try:
-        pdf_content = textract.process(file_path)
-    except UnicodeDecodeError:
-        pdf_content = textract.process(file_path, method="pdfminer")
-    text = str(pdf_content)
-    numbers_list = re.sub('\D', ' ', text).split()
-    for x in numbers_list:
-        if len(x) == 8 and x not in output:
-            output += f'{x} '
-    return output.rstrip()
+def generateOutput(file_path,language,ext):
+    # print(["autosub","-i",file_path,"-S",language,"-F",ext])
+    path="temp_files"
+    out = check_output(["autosub","-i",file_path,"-S",language,"-F",ext])
+    os.remove(file_path)
+    first_file = next(join(path, f) for f in os.listdir(path) if isfile(join(path, f)))
+    f = open(first_file, "r")
+    print(f.read(),type(f.read()))
+    # print(out)
+    # return "exit"
+    return out
