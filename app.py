@@ -19,7 +19,10 @@ def my_page():
             file_path = os.path.join('temp_files', filename)
             f.save(file_path)
             output_data = generateOutput(file_path,language,ext)
-            
+
+            if output_data=="Error, Something Wrong!":
+                return render_template('error.html',err_body=output_data)
+
             txt_filename = filename[:-4]+"."+ext
             return render_template('index.html', output=output_data, flag=1, filename=txt_filename)
     return render_template('index.html')

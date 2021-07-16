@@ -47,30 +47,33 @@ import base64,json
 
 def generateOutput(file_path,language,ext):
     try:
-        files = glob.glob('final_cache/*')
-        for f in files:
-            os.remove(f)
-    except :
-        print("Already Final Cache Is Clear")
-    out = check_output(["autosub","-i",file_path,"-S",language,"-F",ext,"-o","./final_cache"])
+        try:
+            files = glob.glob('final_cache/*')
+            for f in files:
+                os.remove(f)
+        except :
+            print("Already Final Cache Is Clear")
+        out = check_output(["autosub","-i",file_path,"-S",language,"-F",ext,"-o","./final_cache"])
 
-    try:
-        files = glob.glob('temp_files/*')
-        for f in files:
-            os.remove(f)
-    except :
-        print("temp_files Clear")
-        
-    path="final_cache"
-    # first_file = next(join(path, f) for f in os.listdir(path) if isfile(join(path, f)))
-    first_file = os.listdir("final_cache")[0]
-    f = open(path+"/"+first_file, "r",encoding="UTF-8")
-    out = f.read()
+        try:
+            files = glob.glob('temp_files/*')
+            for f in files:
+                os.remove(f)
+        except :
+            print("temp_files Clear")
+            
+        path="final_cache"
+        first_file = os.listdir("final_cache")[0]
+        f = open(path+"/"+first_file, "r",encoding="UTF-8")
+        out = f.read()
 
-    try:
-        files = glob.glob('final_cache/*')
-        for f in files:
-            os.remove(f)
-    except :
-        print("Already Final Cache Is Clear")
+        try:
+            files = glob.glob('final_cache/*')
+            for f in files:
+                os.remove(f)
+        except :
+            print("Already Final Cache Is Clear")
+    
+    except:
+        out = "Error, Something Wrong!"
     return out

@@ -51,7 +51,7 @@
 
                             <!--begin::Info-->
                             <div class="ms-4">
-                                <h3 class="fs-5 fw-bolder text-gray-900 mb-1">Click here to upload</h3>
+                                <h3 id="cng" class="fs-5 fw-bolder text-gray-900 mb-1">Click here to upload</h3>
                                 <span id="custom-text" class="fs-5 fw-bold text-gray-700">.mp3/.wav</span>
                             </div>
                             <!--end::Info-->
@@ -463,9 +463,10 @@
     }
     const realFileBtn = document.getElementById("choose-btn");
     const customTxt = document.getElementById("custom-text");
-
+    const cng = document.getElementById("cng");
     realFileBtn.addEventListener("change", function() {
         if (realFileBtn.value) {
+            cng.innerHTML = "File Selected Successfully"
             customTxt.innerHTML = realFileBtn.value.match(
             /[\/\\]([\w\d\s\.\-\(\)]+)$/
             )[1];
