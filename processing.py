@@ -62,8 +62,9 @@ def generateOutput(file_path,language,ext):
         print("temp_files Clear")
         
     path="final_cache"
-    first_file = next(join(path, f) for f in os.listdir(path) if isfile(join(path, f)))
-    f = open(first_file, "r",encoding="UTF-8")
+    # first_file = next(join(path, f) for f in os.listdir(path) if isfile(join(path, f)))
+    first_file = os.listdir("final_cache")[0]
+    f = open(path+"/"+first_file, "r",encoding="UTF-8")
     out = f.read()
 
     try:
