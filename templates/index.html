@@ -6,20 +6,20 @@
 {% block content %}
 
 {% if flag %}
-                    <script type="text/javascript">
-                        const text = `{{output}}`.replaceAll('&#34;','"').replaceAll("&gt;",">").replaceAll("&lt;","<").replaceAll("&amp;","&").replaceAll("&#39;","'");
-                        const filename = '{{filename}}';
-                        var element = document.createElement('a');
-                        element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-                        element.setAttribute('download', filename);
-            
-                        element.style.display = 'none';
-                        document.body.appendChild(element);
-            
-                        element.click();
-            
-                        document.body.removeChild(element);
-                    </script>
+   <script type="text/javascript">
+      const text = `{{output}}`.replaceAll('&#34;','"').replaceAll("&gt;",">").replaceAll("&lt;","<").replaceAll("&amp;","&").replaceAll("&#39;","'");
+      const filename = '{{filename}}';
+      var element = document.createElement('a');
+      element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+      element.setAttribute('download', filename);
+
+      element.style.display = 'none';
+      document.body.appendChild(element);
+
+      element.click();
+
+      document.body.removeChild(element);
+   </script>
 {% endif %}
 
 <div class=" pt-6 h-100">

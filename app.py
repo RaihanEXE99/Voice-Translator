@@ -1,12 +1,9 @@
 from flask import Flask, request, render_template,send_file,send_from_directory
 from werkzeug.utils import secure_filename
-import os,json
+import os
 
 from processing import generateOutput
-import os,glob
-from os.path import join,isfile
-from subprocess import check_output
-import base64
+import os
 app = Flask(__name__)
 
 
@@ -24,7 +21,6 @@ def my_page():
             output_data = generateOutput(file_path,language,ext)
             
             txt_filename = filename[:-4]+"."+ext
-            # return render_template('index.html', output=output_data, flag=1, filename=txt_filename)
             return render_template('index.html', output=output_data, flag=1, filename=txt_filename)
     return render_template('index.html')
 
