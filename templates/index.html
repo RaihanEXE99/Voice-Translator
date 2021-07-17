@@ -63,16 +63,32 @@
                 <!--end::Input group-->
                 
                 <div class="mt-4">
-                    <select name="language" id="lan" class="form-select form-select-solid" aria-label="Select example">
+                     <p class="text-gray-500">Source Language</p>
+                    <select name="source_language" id="source_language" class="form-select form-select-solid" aria-label="Select example">
                         
                     </select>
                 </div>
 
                 <div class="mt-4">
+                     <p class="text-gray-500">Output Language</p>
+                    <select name="output_language" id="output_language" class="form-select form-select-solid" aria-label="Select example">
+                        
+                    </select>
+                </div>
+
+                <div class="mt-4">
+                  <p class="text-gray-500">Format</p>
                     <select name="ext" class="form-select form-select-solid" aria-label="Select example">
-                        <option value="json">.Json</option>
-                        <option value="srt">.srt</option>
-                        <option value="txt">.txt</option>
+                        <option value="json">json(Only times and text)</option>
+                        <option value="srt">srt(SubRip)</option>
+                        <option value="ass">ass(Advanced SubStation Alpha)</option>
+                        <option value="ssa">ssa(SubStation Alpha)</option>
+                        <option value="sub">sub(MicroDVD Subtitle)</option>
+                        <option value="mpl2.txt">Similar to MicroDVD</option>
+                        <option value="tmp">TMP Player Subtitle Format</option>
+                        <option value="vtt">WebVTT</option>
+                        <option value="ass.json">json(Complex ass content json)</option>
+                        <option value="txt">Plain Text(Text or times)</option>
                     </select>
                 </div>
 
@@ -91,375 +107,121 @@
 {% endblock %}
 {% block script %}
 <script>
-    const loc = [
-    {
-        "af-za":"Afrikaans (South Africa)"
-     },
-     {
-        "am-et":"Amharic (Ethiopia)"
-     },
-     {
-        "ar-ae":"Arabic (United Arab Emirates)"
-     },
-     {
-        "ar-bh":"Arabic (Bahrain)"
-     },
-     {
-        "ar-dz":"Arabic (Algeria)"
-     },
-     {
-        "ar-eg":"Arabic (Egypt)"
-     },
-     {
-        "ar-il":"Arabic (Israel)"
-     },
-     {
-        "ar-iq":"Arabic (Iraq)"
-     },
-     {
-        "ar-jo":"Arabic (Jordan)"
-     },
-     {
-        "ar-kw":"Arabic (Kuwait)"
-     },
-     {
-        "ar-lb":"Arabic (Lebanon)"
-     },
-     {
-        "ar-ma":"Arabic (Morocco)"
-     },
-     {
-        "ar-om":"Arabic (Oman)"
-     },
-     {
-        "ar-ps":"Arabic (State of Palestine)"
-     },
-     {
-        "ar-qa":"Arabic (Qatar)"
-     },
-     {
-        "ar-sa":"Arabic (Saudi Arabia)"
-     },
-     {
-        "ar-tn":"Arabic (Tunisia)"
-     },
-     {
-        "az-az":"Azerbaijani (Azerbaijan)"
-     },
-     {
-        "bg-bg":"Bulgarian (Bulgaria)"
-     },
-     {
-        "bn-bd":"Bengali (Bangladesh)"
-     },
-     {
-        "bn-in":"Bengali (India)"
-     },
-     {
-        "ca-es":"Catalan (Spain)"
-     },
-     {
-        "cmn-hans-cn":"Chinese, Mandarin (Simplified, China)"
-     },
-     {
-        "cmn-hans-hk":"Chinese, Mandarin (Simplified, Hong Kong)"
-     },
-     {
-        "cmn-hant-tw":"Chinese, Mandarin (Traditional, Taiwan)"
-     },
-     {
-        "cs-cz":"Czech (Czech Republic)"
-     },
-     {
-        "da-dk":"Danish (Denmark)"
-     },
-     {
-        "de-de":"German (Germany)"
-     },
-     {
-        "el-gr":"Greek (Greece)"
-     },
-     {
-        "en-au":"English (Australia)"
-     },
-     {
-        "en-ca":"English (Canada)"
-     },
-     {
-        "en-gb":"English (United Kingdom)"
-     },
-     {
-        "en-gh":"English (Ghana)"
-     },
-     {
-        "en-ie":"English (Ireland)"
-     },
-     {
-        "en-in":"English (India)"
-     },
-     {
-        "en-ke":"English (Kenya)"
-     },
-     {
-        "en-ng":"English (Nigeria)"
-     },
-     {
-        "en-nz":"English (New Zealand)"
-     },
-     {
-        "en-ph":"English (Philippines)"
-     },
-     {
-        "en-sg":"English (Singapore)"
-     },
-     {
-        "en-tz":"English (Tanzania)"
-     },
-     {
-        "en-us":"English (United States)"
-     },
-     {
-        "en-za":"English (South Africa)"
-     },
-     {
-        "es-ar":"Spanish (Argentina)"
-     },
-     {
-        "es-bo":"Spanish (Bolivia)"
-     },
-     {
-        "es-cl":"Spanish (Chile)"
-     },
-     {
-        "es-co":"Spanish (Colombia)"
-     },
-     {
-        "es-cr":"Spanish (Costa Rica)"
-     },
-     {
-        "es-do":"Spanish (Dominican Republic)"
-     },
-     {
-        "es-ec":"Spanish (Ecuador)"
-     },
-     {
-        "es-es":"Spanish (Spain)"
-     },
-     {
-        "es-gt":"Spanish (Guatemala)"
-     },
-     {
-        "es-hn":"Spanish (Honduras)"
-     },
-     {
-        "es-mx":"Spanish (Mexico)"
-     },
-     {
-        "es-ni":"Spanish (Nicaragua)"
-     },
-     {
-        "es-pa":"Spanish (Panama)"
-     },
-     {
-        "es-pe":"Spanish (Peru)"
-     },
-     {
-        "es-pr":"Spanish (Puerto Rico)"
-     },
-     {
-        "es-py":"Spanish (Paraguay)"
-     },
-     {
-        "es-sv":"Spanish (El Salvador)"
-     },
-     {
-        "es-us":"Spanish (United States)"
-     },
-     {
-        "es-uy":"Spanish (Uruguay)"
-     },
-     {
-        "es-ve":"Spanish (Venezuela)"
-     },
-     {
-        "eu-es":"Basque (Spain)"
-     },
-     {
-        "fa-ir":"Persian (Iran)"
-     },
-     {
-        "fi-fi":"Finnish (Finland)"
-     },
-     {
-        "fil-ph":"Filipino (Philippines)"
-     },
-     {
-        "fr-ca":"French (Canada)"
-     },
-     {
-        "fr-fr":"French (France)"
-     },
-     {
-        "gl-es":"Galician (Spain)"
-     },
-     {
-        "gu-in":"Gujarati (India)"
-     },
-     {
-        "he-il":"Hebrew (Israel)"
-     },
-     {
-        "hi-in":"Hindi (India)"
-     },
-     {
-        "hr-hr":"Croatian (Croatia)"
-     },
-     {
-        "hu-hu":"Hungarian (Hungary)"
-     },
-     {
-        "hy-am":"Armenian (Armenia)"
-     },
-     {
-        "id-id":"Indonesian (Indonesia)"
-     },
-     {
-        "is-is":"Icelandic (Iceland)"
-     },
-     {
-        "it-it":"Italian (Italy)"
-     },
-     {
-        "ja-jp":"Japanese (Japan)"
-     },
-     {
-        "jv-id":"Javanese (Indonesia)"
-     },
-     {
-        "ka-ge":"Georgian (Georgia)"
-     },
-     {
-        "km-kh":"Khmer (Cambodia)"
-     },
-     {
-        "kn-in":"Kannada (India)"
-     },
-     {
-        "ko-kr":"Korean (South Korea)"
-     },
-     {
-        "lo-la":"Lao (Laos)"
-     },
-     {
-        "lt-lt":"Lithuanian (Lithuania)"
-     },
-     {
-        "lv-lv":"Latvian (Latvia)"
-     },
-     {
-        "ml-in":"Malayalam (India)"
-     },
-     {
-        "mr-in":"Marathi (India)"
-     },
-     {
-        "ms-my":"Malay (Malaysia)"
-     },
-     {
-        "nb-no":"Norwegian Bokmal (Norway)"
-     },
-     {
-        "ne-np":"Nepali (Nepal)"
-     },
-     {
-        "nl-nl":"Dutch (Netherlands)"
-     },
-     {
-        "pl-pl":"Polish (Poland)"
-     },
-     {
-        "pt-br":"Portuguese (Brazil)"
-     },
-     {
-        "pt-pt":"Portuguese (Portugal)"
-     },
-     {
-        "ro-ro":"Romanian (Romania)"
-     },
-     {
-        "ru-ru":"Russian (Russia)"
-     },
-     {
-        "si-lk":"Sinhala (Sri Lanka)"
-     },
-     {
-        "sk-sk":"Slovak (Slovakia)"
-     },
-     {
-        "sl-si":"Slovenian (Slovenia)"
-     },
-     {
-        "sr-rs":"Serbian (Serbia)"
-     },
-     {
-        "su-id":"Sundanese (Indonesia)"
-     },
-     {
-        "sv-se":"Swedish (Sweden)"
-     },
-     {
-        "sw-ke":"Swahili (Kenya)"
-     },
-     {
-        "sw-tz":"Swahili (Tanzania)"
-     },
-     {
-        "ta-in":"Tamil (India)"
-     },
-     {
-        "ta-lk":"Tamil (Sri Lanka)"
-     },
-     {
-        "ta-my":"Tamil (Malaysia)"
-     },
-     {
-        "ta-sg":"Tamil (Singapore)"
-     },
-     {
-        "te-in":"Telugu (India)"
-     },
-     {
-        "th-th":"Thai (Thailand)"
-     },
-     {
-        "tr-tr":"Turkish (Turkey)"
-     },
-     {
-        "uk-ua":"Ukrainian (Ukraine)"
-     },
-     {
-        "ur-in":"Urdu (India)"
-     },
-     {
-        "ur-pk":"Urdu (Pakistan)"
-     },
-     {
-        "vi-vn":"Vietnamese (Vietnam)"
-     },
-     {
-        "yue-hant-hk":"Chinese, Cantonese (Traditional, Hong Kong)"
-     },
-     {
-        "zu-za":"Zulu (South Africa)"
-     }
-  ]
-
+   const loc = {
+      "en"                :"english Default",
+      "af"                :"afrikaans",
+      "am"                :"amharic",
+      "ar"                :"arabic",
+      "az"                :"azerbaijani",
+      "be"                :"belarusian",
+      "bg"                :"bulgarian",
+      "bn"                :"bengali",
+      "bs"                :"bosnian",
+      "ca"                :"catalan",
+      "ceb"               :"cebuano",
+      "co"                :"corsican",
+      "cs"                :"czech",
+      "cy"                :"welsh",
+      "da"                :"danish",
+      "de"                :"german",
+      "el"                :"greek",
+      
+      "eo"                :"esperanto",
+      "es"                :"spanish",
+      "et"                :"estonian",
+      "eu"                :"basque",
+      "fa"                :"persian",
+      "fi"                :"finnish",
+      "fr"                :"french",
+      "fy"                :"frisian",
+      "ga"                :"irish",
+      "gd"                :"scots gaelic",
+      "gl"                :"galician",
+      "gu"                :"gujarati",
+      "ha"                :"hausa",
+      "haw"               :"hawaiian",
+      "he"                :"hebrew",
+      "hi"                :"hindi",
+      "hmn"               :"hmong",
+      "hr"                :"croatian",
+      "ht"                :"haitian creole",
+      "hu"                :"hungarian",
+      "hy"                :"armenian",
+      "id"                :"indonesian",
+      "ig"                :"igbo",
+      "is"                :"icelandic",
+      "it"                :"italian",
+      "iw"                :"hebrew",
+      "ja"                :"japanese",
+      "jw"                :"javanese",
+      "ka"                :"georgian",
+      "kk"                :"kazakh",
+      "km"                :"khmer",
+      "kn"                :"kannada",
+      "ko"                :"korean",
+      "ku"                :"kurdish (kurmanji)",
+      "ky"                :"kyrgyz",
+      "la"                :"latin",
+      "lb"                :"luxembourgish",
+      "lo"                :"lao",
+      "lt"                :"lithuanian",
+      "lv"                :"latvian",
+      "mg"                :"malagasy",
+      "mi"                :"maori",
+      "mk"                :"macedonian",
+      "ml"                :"malayalam",
+      "mn"                :"mongolian",
+      "mr"                :"marathi",
+      "ms"                :"malay",
+      "mt"                :"maltese",
+      "my"                :"myanmar (burmese)",
+      "ne"                :"nepali",
+      "nl"                :"dutch",
+      "no"                :"norwegian",
+      "ny"                :"chichewa",
+      "or"                :"odia",
+      "pa"                :"punjabi",
+      "pl"                :"polish",
+      "ps"                :"pashto",
+      "pt"                :"portuguese",
+      "ro"                :"romanian",
+      "ru"                :"russian",
+      "sd"                :"sindhi",
+      "si"                :"sinhala",
+      "sk"                :"slovak",
+      "sl"                :"slovenian",
+      "sm"                :"samoan",
+      "sn"                :"shona",
+      "so"                :"somali",
+      "sq"                :"albanian",
+      "sr"                :"serbian",
+      "st"                :"sesotho",
+      "su"                :"sundanese",
+      "sv"                :"swedish",
+      "sw"                :"swahili",
+      "ta"                :"tamil",
+      "te"                :"telugu",
+      "tg"                :"tajik",
+      "th"                :"thai",
+      "tl"                :"filipino",
+      "tr"                :"turkish",
+      "ug"                :"uyghur",
+      "uk"                :"ukrainian",
+      "ur"                :"urdu",
+      "uz"                :"uzbek",
+      "vi"                :"vietnamese",
+      "xh"                :"xhosa",
+      "yi"                :"yiddish",
+      "yo"                :"yoruba",
+      "zh-cn"             :"chinese (simplified)",
+      "zh-tw"             :"chinese (traditional)",
+      "zu"                :"zulu"
+  }
     window.onload = function(){
-        loc.map((e)=>{
-            for (const [key, value] of Object.entries(e)) {
-                document.querySelector("#lan").innerHTML += `<option value="${key}">${value}</option>`;
-            }
-        })
+      for (const [key, value] of Object.entries(loc)) {
+            document.querySelector("#source_language").innerHTML += `<option value="${key}">${value[0].toUpperCase()+value.substring(1)}</option>`;
+            document.querySelector("#output_language").innerHTML += `<option value="${key}">${value[0].toUpperCase()+value.substring(1)}</option>`;
+      }
     }
     const realFileBtn = document.getElementById("choose-btn");
     const customTxt = document.getElementById("custom-text");

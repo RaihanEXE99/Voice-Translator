@@ -45,7 +45,7 @@ import base64,json
     # # print("FINAL",fsrt)
     # return 
 
-def generateOutput(file_path,language,ext):
+def generateOutput(file_path,source_language,output_language,ext):
     try:
         try:
             files = glob.glob('final_cache/*')
@@ -53,7 +53,7 @@ def generateOutput(file_path,language,ext):
                 os.remove(f)
         except :
             print("Already Final Cache Is Clear")
-        out = check_output(["autosub","-i",file_path,"-S",language,"-F",ext,"-o","./final_cache"])
+        out = check_output(["autosub","-i",file_path,"-S",source_language,"-D","output_language","-F",ext,"-o","./final_cache"])
 
         try:
             files = glob.glob('temp_files/*')

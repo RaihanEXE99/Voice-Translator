@@ -12,13 +12,14 @@ def my_page():
     if request.method == "POST":
         f = request.files.get("file")
         ext = request.form.get("ext")
-        language = request.form.get("language")
+        source_language = request.form.get("source_language")
+        output_language = request.form.get("output_language")
 
         if f:
             filename = secure_filename(f.filename)
             file_path = os.path.join('temp_files', filename)
             f.save(file_path)
-            output_data = generateOutput(file_path,language,ext)
+            output_data = generateOutput(file_path,source_language,output_language,ext)
 
             if output_data=="Error, Something Wrong!":
                 return render_template('error.html',err_body=output_data)
